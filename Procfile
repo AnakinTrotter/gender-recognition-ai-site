@@ -1,0 +1,1 @@
+web: python gender_recognition_ai/manage.py runserver 0.0.0.0:$PORT
