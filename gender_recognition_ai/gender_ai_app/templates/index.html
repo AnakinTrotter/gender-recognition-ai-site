@@ -12,19 +12,19 @@
     <meta name="keywords" content="TensorFlow, Machine Learning, Neural Network">
     <meta name="author" content="Anakin Trotter">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <style>
+    <style>
         div {
             border: 3px solid red;
         }
-    </style> -->
+    </style>
 </head>
 
-<body class="d-flex align-items-center flex-column">
+<body class="container-fluid d-flex flex-column">
     <section class="h4">
         <div class="h2 bg-secondary" id="prediction-header">
             Prediction: {% if prediction %}{{ prediction }}{% endif %}
         </div>
-        <div class="d-flex justify-content-center bg-primary">
+        <div class="d-flex img-responsive bg-primary">
             {% if image %}
             <img src="{{image.image.url}}">
             {% else %}
