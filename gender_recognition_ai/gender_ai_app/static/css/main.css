@@ -1,3 +1,20 @@
+#default-image {
+    display: none;
+}
+
+#mobile-image {
+    display: flex;
+}
+
+@media only screen and (min-width: 768px) {
+    #default-image {
+        display: flex;
+    }
+    #mobile-image {
+        display: none;
+    }
+}
+
 #prediction-header {
     margin-bottom: 0;
 }
