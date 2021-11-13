@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Gender Recognition AI</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="icon" href="{% static 'img/icon.png' %}">
+    <meta charset="UTF-8">
+    <meta name="description" content="A website that uses a neural network to predict if someone is male or female.">
+    <meta name="keywords" content="TensorFlow, Machine Learning, Neural Network">
+    <meta name="author" content="Anakin Trotter">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body class="d-flex align-items-center flex-column">
+    <section>
+        {% block upload %}<img src="{% static 'img/title_slide.png' %}">{% endblock %}
+        <div class="d-flex">
+            <form action="upload" method="POST" enctype="multipart/form-data"
+                class="d-flex align-items-center justify-content-start p-1">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit">
+            </form>
+            {% if prediction %}
+            Prediction: {{ prediction }}
+            {% endif %}
+        </div>
+        <ul>
+            {% for error in errors %}
+                <li class="text-danger">
+                    {{error}}
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+</body>
+
+</html>
