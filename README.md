@@ -26,7 +26,7 @@ A version of my Gender Recognition AI hosted on the world wide web for all to us
 Please note that the current version of Gender Recognition AI only works on male and female.
 Initial load times may be long due to the Heroku dyno starting up.
  
- ![screenshot of website title and about the game section](gender-ai-site-demo.png)  
+ ![screenshot of website with male prediction for Bob Ross](gender-ai-site-demo.PNG)  
  
 ## About the Author
 **Anakin Trotter**
