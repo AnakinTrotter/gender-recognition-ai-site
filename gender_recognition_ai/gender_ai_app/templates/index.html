@@ -13,44 +13,76 @@
     <meta name="author" content="Anakin Trotter">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        div {
+        /* * {
             border: 1px solid black;
-        }
+        } */
     </style>
 </head>
 
-<body class="container-sm d-flex flex-column">
-    <section class="h4">
-        <div class="h2 bg-secondary" id="prediction-header">
-            Prediction: {% if prediction %}{{ prediction }}{% endif %}
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <div class="container d-flex">
+            <a class="navbar-brand text-white" href="/">Gender Recognition AI</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="d-flex flex-row-reverse container p-0">
+                    <div class="navbar-nav">
+                        <div class="nav-item">
+                            <a class="nav-link text-white" href="#">Predict Gender</a>
+                        </div>
+                        <div class="nav-item">
+                            <a class="nav-link text-white" href="#">About</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="d-flex overflow-hidden bg-primary justify-content-center">
-            {% if image %}
-            <img class="img-fluid" src="{{image.image.url}}">
-            {% else %}
-            <img class="img-fluid" src="{% static 'img/title_slide.png' %}" id="default-image">
-            <img class="img-fluid" src="{% static 'img/title_image.jpg' %}" id="mobile-image">
-            {% endif %}
-        </div>
+    </nav>
 
-        <div class="d-flex flex-column bg-secondary">
-            <form action="upload" method="POST" enctype="multipart/form-data"
-                class="d-flex p-1">
+    {% block result %}{% endblock %}
+
+    <section class="container pt-5">
+        <h1 class="text-black text-center mt-4">TEST THE MACHINE</h1>
+        <div class="container px-5">
+            <p class="lead text-center mt-4 mx-4">Let Artificial Intelligence guess your gender. Have you ever wondered
+                what
+                gender a computer would see you as? Find out now by uploading a photo of your face!</p>
+        </div>
+        <div class="container px-5 bg-primary" style="border-top: 1px solid white">
+            <h1 class="text-center text-black display-5 mt-5">WHAT GENDER AM I?</h1>
+            <p class="text-center text-black">Test it now by uploading a picture of you, or feel free to test anyone
+                else!</p>
+            <form action="predict" method="POST" enctype="multipart/form-data" class="text-center">
                 {% csrf_token %}
-                <input type="file" accept="image/*" name="image">
-                <input type="submit" value="Upload">
+                <input type="file" accept="image/*" name="image"><br><br>
+                <p class="text-center text-black" style="font-weight: 500;">DISCLAIMER: AI only guesses male or female.</p>
+                <input type="submit" value="Analyze Gender"><br><br>
             </form>
         </div>
-        {% if errors %}
-        <ul>
-            {% for error in errors %}
-            <li class="text-danger">
-                {{error}}
-            </li>
-            {% endfor %}
-        </ul>
-        {% endif %}
+        <div class="container bg-primary" style="border-top: 1px solid white;"><br></div>
     </section>
+
+    {% block error %}{% endblock %}
+
+    <!-- <section class="container">
+        <div class="text-center mt-4">
+            <h3 class="text-black">Recommendations for accurate gender predictions</h3>
+            <p>Here are some examples of what the pictures you upload should look like.</p>
+        </div>
+    </section> -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
