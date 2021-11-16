@@ -13,44 +13,64 @@
     <meta name="author" content="Anakin Trotter">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        div {
+        /* div {
             border: 1px solid black;
-        }
+        } */
     </style>
 </head>
 
-<body class="container-sm d-flex flex-column">
-    <section class="h4">
-        <div class="h2 bg-secondary" id="prediction-header">
-            Prediction: {% if prediction %}{{ prediction }}{% endif %}
-        </div>
-        <div class="d-flex overflow-hidden bg-primary justify-content-center">
-            {% if image %}
-            <img class="img-fluid" src="{{image.image.url}}">
-            {% else %}
-            <img class="img-fluid" src="{% static 'img/title_slide.png' %}" id="default-image">
-            <img class="img-fluid" src="{% static 'img/title_image.jpg' %}" id="mobile-image">
-            {% endif %}
-        </div>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <a class="navbar-brand mx-2" href="#">Gender Recognition AI</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <div class="d-flex flex-column bg-secondary">
-            <form action="upload" method="POST" enctype="multipart/form-data"
-                class="d-flex p-1">
-                {% csrf_token %}
-                <input type="file" accept="image/*" name="image">
-                <input type="submit" value="Upload">
-            </form>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+            </ul>
         </div>
-        {% if errors %}
-        <ul>
-            {% for error in errors %}
-            <li class="text-danger">
-                {{error}}
-            </li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-    </section>
+    </nav>
+
+    <div class="container-sm d-flex flex-column">
+        <section class="h4">
+            <div class="h3 bg-secondary" id="prediction-header">
+                Prediction: {% if prediction %}{{ prediction }}{% endif %}
+            </div>
+            <div class="d-flex overflow-hidden bg-primary justify-content-center">
+                {% if image %}
+                <img class="img-fluid" src="{{image.image.url}}">
+                {% else %}
+                <img class="img-fluid" src="{% static 'img/title_slide.png' %}" id="default-image">
+                <img class="img-fluid" src="{% static 'img/title_image.jpg' %}" id="mobile-image">
+                {% endif %}
+            </div>
+
+            <div class="d-flex flex-column bg-secondary">
+                <form action="upload" method="POST" enctype="multipart/form-data" class="d-flex p-1">
+                    {% csrf_token %}
+                    <input type="file" accept="image/*" name="image">
+                    <input type="submit" value="Upload">
+                </form>
+            </div>
+            {% if errors %}
+            <ul>
+                {% for error in errors %}
+                <li class="text-danger">
+                    {{error}}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </section>
+    </div>
 </body>
 
 </html>
