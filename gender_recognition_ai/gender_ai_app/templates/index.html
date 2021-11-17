@@ -12,14 +12,38 @@
     <meta name="keywords" content="TensorFlow, Machine Learning, Neural Network">
     <meta name="author" content="Anakin Trotter">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        /* * {
-            border: 1px solid black;
-        } */
-    </style>
 </head>
 
 <body>
+    <style>
+        #examples {
+            gap: 10px;
+        }
+
+        .explain {
+            padding: 2%;
+        }
+
+        .example {
+            width: 45%;
+            height: 65%;
+        }
+
+        @media only screen and (min-width: 1415px) {
+            #examples {
+                gap: 87.5px;
+            }
+
+            .explain {
+                padding: 0;
+            }
+
+            .example {
+                width: 20%;
+                height: 45%;
+            }
+        }
+    </style>
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
         <div class="container d-flex">
             <a class="navbar-brand text-white" href="/">Gender Recognition AI</a>
@@ -31,10 +55,10 @@
                 <div class="d-flex flex-row-reverse container p-0">
                     <div class="navbar-nav">
                         <div class="nav-item">
-                            <a class="nav-link text-white" href="#">Predict Gender</a>
+                            <a class="nav-link text-white" href="#predict">Predict Gender</a>
                         </div>
                         <div class="nav-item">
-                            <a class="nav-link text-white" href="#">About</a>
+                            <a class="nav-link text-white" href="#about">About</a>
                         </div>
                     </div>
                 </div>
@@ -46,19 +70,20 @@
 
     <section class="container pt-5">
         <h1 class="text-black text-center mt-4">TEST THE MACHINE</h1>
-        <div class="container px-5">
-            <p class="lead text-center mt-4 mx-4">Let Artificial Intelligence guess your gender. Have you ever wondered
+        <div class="container px-3">
+            <p class="lead text-center mt-4">Let Artificial Intelligence guess your gender. Have you ever wondered
                 what
-                gender a computer would see you as? Find out now by uploading a photo of your face!</p>
+                gender an artificial intelligence would see you as? Find out now by uploading a photo of your face!</p>
         </div>
-        <div class="container px-5 bg-primary" style="border-top: 1px solid white">
+        <div class="container px-5 bg-primary" style="border-top: 1px solid white" id="predict">
             <h1 class="text-center text-black display-5 mt-5">WHAT GENDER AM I?</h1>
             <p class="text-center text-black">Test it now by uploading a picture of you, or feel free to test anyone
                 else!</p>
             <form action="predict" method="POST" enctype="multipart/form-data" class="text-center">
                 {% csrf_token %}
-                <input type="file" accept="image/*" name="image"><br><br>
-                <p class="text-center text-black" style="font-weight: 500;">DISCLAIMER: AI only guesses male or female.</p>
+                <input type="file" accept="image/*" name="image" style="max-width: 100%"><br><br>
+                <p class="text-center text-black" style="font-weight: 500;">DISCLAIMER: AI only guesses male or female.
+                </p>
                 <input type="submit" value="Analyze Gender"><br><br>
             </form>
         </div>
@@ -67,12 +92,112 @@
 
     {% block error %}{% endblock %}
 
-    <!-- <section class="container">
+    <section class="container pt-4" style="padding-left: 0; padding-right: 0;">
         <div class="text-center mt-4">
             <h3 class="text-black">Recommendations for accurate gender predictions</h3>
             <p>Here are some examples of what the pictures you upload should look like.</p>
         </div>
-    </section> -->
+        <div class="d-flex flex-row flex-wrap justify-content-center flex-fill"
+            style="padding-left: 0; padding-right: 0;" id="examples">
+            <img src="{% static 'img/example1.jpg' %}" class="img-fluid example">
+            <img src="{% static 'img/example2.jpg' %}" class="img-fluid example">
+            <img src="{% static 'img/example3.jpg' %}" class="img-fluid example">
+            <img src="{% static 'img/example4.jpg' %}" class="img-fluid example">
+        </div>
+    </section>
+
+    <section class="container mt-4 explain">
+        <p>In order for the AI to work, your photo must contain only one unobstructed face. For best results, use a high
+            quality photo and make sure that the face takes up a large portion of the photo. Facial expression and hair
+            do not have an impact on the model's prediction.</p>
+        <p>Please do not worry if you are misgendered by the AI. Gender Recognition AI is meant to be an experiment
+            with neural networks and is not 100% accurate.</p>
+    </section>
+
+    <section class="container mt-4 p-0" id="about">
+        <h1 class="text-center text-black">About the Project</h1>
+        <p class="explain mt-4">Gender Recognition AI's neural network is made with a Keras sequential model. The model
+            consists of three dense layers: the input, hidden, and output layers. Before a photo can be passed through
+            the gender recognition neural network, it is passed through a facial recognition neural network, supplied by
+            the <a href="https://pypi.org/project/face-recognition/" target="__blank">Face Recognition</a> library,
+            which always outputs a length 128 vector containing information on the
+            outlines of various facial features.</p>
+        <p class="explain">This 128 length vector is then passed into the input layer of the
+            gender recognition neural network, which has 128 neurons. The hidden layer contains 65 neurons and the
+            activation functions is <a
+                href="https://machinelearningmastery.com/rectified-linear-activation-function-for-deep-learning-neural-networks/"
+                target="__blank">ReLU</a>.
+            The output layer is a single neuron with the sigmoid activation function such
+            that it outputs a value between 0 and 1 for the probability that a given face belongs to a male. Please
+            visit the <a href="https://github.com/AnakinTrotter/gender-recognition-ai" target="__blank">GitHub
+                repository<a> for a more detailed look into how the model was coded.</p>
+    </section>
+
+    <section class="container mt-4 p-0">
+        <h1 class="text-center text-black">FAQ</h1>
+        <div class="accordion mt-4" id="accordionExample">
+            <div class="card">
+                <div class="card-header bg-white" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left collapsed text-black" type="button"
+                            data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
+                            aria-controls="collapseOne">
+                            Do you save or publish my uploaded photos?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        No. The photos you upload are initially saved by the server for processing by the AI but are
+                        deleted later. None of the photos are published.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header bg-white" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left collapsed text-black" type="button"
+                            data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Why is the AI making the wrong prediction?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        Gender Recognition AI is completely experimental and was made for a personal project. If the AI
+                        predicts your gender wrong, that is not a reflection on you, but rather on the technological
+                        shortcomings of the AI. Check the about section for more information on how the AI was made.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header bg-white" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left collapsed text-black" type="button"
+                            data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                            aria-controls="collapseThree">
+                            Can I download or change the AI model?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        Yes. Gender Recognition AI is covered under the MIT license and is free to download, change, and
+                        use. To download Gender Recognition AI, head over to the <a
+                            href="https://github.com/AnakinTrotter/gender-recognition-ai" target="__blank">GitHub
+                            repository<a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div style="height: 100px"></div>
+
+    <div class="bg-primary d-flex justify-content-center align-items-end" style="width: 100%; height: 50px;">
+        <p><a class="text-light" href="#" style="text-decoration: none">Back to Top</a></p>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
