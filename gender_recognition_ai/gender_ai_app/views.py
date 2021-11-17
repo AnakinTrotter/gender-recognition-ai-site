@@ -1,3 +1,4 @@
+from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from .models import Image
 from .predict import predict as predict_gender
@@ -33,3 +34,6 @@ def predict(request):
             elif prediction == 'Male' or prediction == 'Female':
                 return render(request, 'predict.html', {'image': image_object, 'prediction': prediction})
     return render(request, 'error.html', {'errors': errors})
+
+def ping_test(request):
+    return HttpResponse('All good!')
