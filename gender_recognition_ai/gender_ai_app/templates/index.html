@@ -99,10 +99,14 @@
         </div>
         <div class="d-flex flex-row flex-wrap justify-content-center flex-fill"
             style="padding-left: 0; padding-right: 0;" id="examples">
-            <img src="{% static 'img/example1.jpg' %}" class="img-fluid example">
-            <img src="{% static 'img/example2.jpg' %}" class="img-fluid example">
-            <img src="{% static 'img/example3.jpg' %}" class="img-fluid example">
-            <img src="{% static 'img/example4.jpg' %}" class="img-fluid example">
+            <img src="{% static 'img/example1.jpg' %}" class="img-fluid example"
+                alt="Caucasian woman with black wavy hair and brown eyes tips her red cap to the camera.">
+            <img src="{% static 'img/example2.jpg' %}" class="img-fluid example"
+                alt="White male with blue eyes and a thin mustache stares intensely at the camera from close up.">
+            <img src="{% static 'img/example3.jpg' %}" class="img-fluid example"
+                alt="White woman with blonde hair and her lower body obstructed by a poster board smiles joyfully.">
+            <img src="{% static 'img/example4.jpg' %}" class="img-fluid example"
+                alt="White woman with green eyes and short hair rests her chin on her hands.">
         </div>
     </section>
 
@@ -124,7 +128,7 @@
             outlines of various facial features.</p>
         <p class="explain">This 128 length vector is then passed into the input layer of the
             gender recognition neural network, which has 128 neurons. The hidden layer contains 65 neurons and the
-            activation functions is <a
+            activation function is <a
                 href="https://machinelearningmastery.com/rectified-linear-activation-function-for-deep-learning-neural-networks/"
                 target="__blank">ReLU</a>.
             The output layer is a single neuron with the sigmoid activation function such
