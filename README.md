@@ -15,7 +15,6 @@
   - [Built With](#built-with)
   - [Technologies Used](#technologies-used)
   - [Practices Used](#practices-used)
-  - [Deployed Link](#deployed-link)
   - [Contributing](#contributing)
   - [License](#license)
   - [Questions](#questions)
@@ -25,6 +24,8 @@
 A version of my Gender Recognition AI hosted on the world wide web for all to use!
 Please note that the current version of Gender Recognition AI only works on male and female.
 Initial load times may be long due to the Heroku dyno starting up.
+
+* [Link to training code](https://github.com/AnakinTrotter/gender-recognition-ai/)
  
  ![screenshot of website with male prediction for Bob Ross](gender-ai-site-demo.PNG)  
  
@@ -54,11 +55,6 @@ A modern internet browser such as Chrome, Firefox, or Safari.
 ## Practices Used
 
 * [Web Content Accessibility Guidelines](https://www.w3.org/WAI/standards-guidelines/wcag/)
-  
-## Deployed Link
-
-* [Link to live site](http://gender-recognition-ai.herokuapp.com/)
-* [Link to training code](https://github.com/AnakinTrotter/gender-recognition-ai/)
 
 ## Contributing
 
