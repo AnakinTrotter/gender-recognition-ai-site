@@ -23,7 +23,6 @@
 
 A version of my Gender Recognition AI hosted on the world wide web for all to use!
 Please note that the current version of Gender Recognition AI only works on male and female.
-Initial load times may be long due to the Heroku dyno starting up.
 
 * [Link to training code](https://github.com/AnakinTrotter/gender-recognition-ai/)
  
